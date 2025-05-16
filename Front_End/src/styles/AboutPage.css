@@ -1,0 +1,65 @@
+.about-page .about-hero-section {
+  background-color: #f8b400;
+  color: rgb(0, 0, 0);
+  padding: 80px 20px 60px;
+  text-align: center;
+}
+
+.about-hero-title {
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+}
+
+.about-hero-subtitle {
+  font-size: 1.2rem;
+}
+
+.about-container {
+  max-width: 900px;
+  margin: auto;
+  padding: 40px 20px;
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+.about-timeline {
+  position: relative;
+  margin-top: 40px;
+  padding-left: 30px;
+  border-left: 4px solid #f8b400;
+}
+
+.timeline-item {
+  position: relative;
+  margin-bottom: 40px;
+  padding-left: 40px;
+}
+
+.timeline-icon {
+  position: absolute;
+  left: -26px;
+  top: 0;
+  background-color: #f8b400;
+  color: white;
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  box-shadow: 0 0 5px rgba(0,0,0,0.1);
+}
+
+.timeline-content {
+  background: #fff;
+  padding: 15px 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  transition: transform 0.3s;
+}
+
+.timeline-content h3 {
+  margin: 0 0 5px;
+  color: #000000;
+}

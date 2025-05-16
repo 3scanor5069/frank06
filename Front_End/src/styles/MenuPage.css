@@ -1,0 +1,84 @@
+.paginamenu-wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.paginamenu-page {
+  flex: 1;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 60px 20px;
+  font-family: sans-serif;
+}
+
+.paginamenu-title {
+  text-align: center;
+  margin-bottom: 50px;
+  font-size: 36px;
+  color: #f8b400;
+}
+
+.paginamenu-category {
+  margin-bottom: 40px;
+}
+
+.paginamenu-category-title {
+  font-size: 28px;
+  margin-bottom: 20px;
+  color: #222;
+  border-bottom: 2px solid #f8b400;
+  display: inline-block;
+  padding-bottom: 5px;
+}
+
+.paginamenu-items {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.paginamenu-card {
+  display: flex;
+  align-items: center;
+  background-color: #fff7e6;
+  border-radius: 15px;
+  padding: 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.paginamenu-card:hover {
+  transform: translateY(-5px);
+}
+
+.paginamenu-image img {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 25px;
+  border: 3px solid #f8b400;
+}
+
+.paginamenu-info {
+  flex: 1;
+}
+
+.paginamenu-item-title {
+  margin: 0;
+  font-size: 22px;
+  color: #222;
+}
+
+.paginamenu-description {
+  margin: 8px 0;
+  color: #555;
+  font-size: 16px;
+}
+
+.paginamenu-price {
+  font-size: 18px;
+  font-weight: bold;
+  color: #000;
+}
