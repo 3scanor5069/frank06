@@ -5,8 +5,10 @@ import PaginaPrincipal from './pages/PaginaPrincipal';
 import AboutPage from './pages/AboutPage';
 import MenuPage from './pages/MenuPage';
 import MenuDetail from './pages/MenuDetail';
-import CartPage from './pages/CartPage'; // <-- este faltaba
+import CartPage from './pages/CartPage'; 
 import { CartProvider } from './context/CartContext';
+import TeamPage from './pages/TeamPage';
+import ServicesPage from './pages/ServicesPage';
 
 function App() {
   return (
@@ -18,6 +20,8 @@ function App() {
           <Route path="/menu" element={<MenuPage />} />
           <Route path="/menu/:id" element={<MenuDetail />} />
           <Route path="/cart" element={<CartPage />} />
+          <Route path="/equipo" element={<TeamPage />} />
+          <Route path="/servicios" element={<ServicesPage />} />
         </Routes>
       </Router>
     </CartProvider>

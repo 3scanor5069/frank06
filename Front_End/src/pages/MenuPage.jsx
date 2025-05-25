@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import '../styles/MenuPage.css';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
@@ -63,30 +63,48 @@ const menu = {
 };
 
 const MenuPage = () => {
+  // Para manejar el scroll suave si se entra desde otro enlace con hash
+  useEffect(() => {
+    const hash = window.location.hash;
+    if (hash) {
+      const element = document.querySelector(hash);
+      if (element) {
+        setTimeout(() => {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }, 100); // espera un poco por el render
+      }
+    }
+  }, []);
+
   return (
     <div className="paginamenu-wrapper">
       <Header />
       <main className="paginamenu-page">
         <h1 className="paginamenu-title">Nuestro menú completo</h1>
-        {Object.entries(menu).map(([category, items]) => (
-          <div key={category} className="paginamenu-category">
-            <h2 className="paginamenu-category-title">{category}</h2>
-            <div className="paginamenu-items">
-              {items.map((item, index) => (
-                <div className="paginamenu-card" key={index}>
-                  <div className="paginamenu-image">
-                    <img src={item.image} alt={item.title} />
+        {Object.entries(menu).map(([category, items]) => {
+          const id = category.replace(/\s+/g, '').toLowerCase();
+          return (
+            <div key={category} className="paginamenu-category">
+              <h2 className="paginamenu-category-title" id={id}>
+                {category}
+              </h2>
+              <div className="paginamenu-items">
+                {items.map((item, index) => (
+                  <div className="paginamenu-card" key={index}>
+                    <div className="paginamenu-image">
+                      <img src={item.image} alt={item.title} />
+                    </div>
+                    <div className="paginamenu-info">
+                      <h3 className="paginamenu-item-title">{item.title}</h3>
+                      <p className="paginamenu-description">{item.description}</p>
+                      <span className="paginamenu-price">{item.price}</span>
+                    </div>
                   </div>
-                  <div className="paginamenu-info">
-                    <h3 className="paginamenu-item-title">{item.title}</h3>
-                    <p className="paginamenu-description">{item.description}</p>
-                    <span className="paginamenu-price">{item.price}</span>
-                  </div>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
-          </div>
-        ))}
+          );
+        })}
       </main>
       <Footer />
     </div>

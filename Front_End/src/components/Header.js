@@ -1,14 +1,16 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import {
   FaMapMarkerAlt, FaClock, FaFacebookF, FaTwitter, FaLinkedinIn, FaInstagram,
-  FaSearch, FaBars, FaTimes
+  FaBars, FaTimes, FaUser
 } from 'react-icons/fa';
 import '../styles/Header.css';
 
 const Header = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [openDropdown, setOpenDropdown] = useState(null);
+  const [userMenuOpen, setUserMenuOpen] = useState(false);
+  const location = useLocation();
 
   const toggleDropdown = (name) => {
     if (openDropdown === name) {
@@ -16,6 +18,16 @@ const Header = () => {
     } else {
       setOpenDropdown(name);
     }
+  };
+
+  const handleLinkClick = () => {
+    setMobileOpen(false);
+    setOpenDropdown(null);
+    setUserMenuOpen(false);
+  };
+
+  const getMenuLink = (section) => {
+    return location.pathname === '/menu' ? `#${section}` : `/menu#${section}`;
   };
 
   return (
@@ -49,7 +61,7 @@ const Header = () => {
         </div>
 
         <ul className={`nav-menu ${mobileOpen ? 'active' : ''}`}>
-          <li><Link to="/">Inicio</Link></li>
+          <li><Link to="/" onClick={handleLinkClick}>Inicio</Link></li>
 
           <li
             className={`has-dropdown ${openDropdown === 'pages' ? 'active' : ''}`}
@@ -57,9 +69,9 @@ const Header = () => {
           >
             Páginas
             <ul className="dropdown">
-              <li><Link to="/about">Nosotros</Link></li>
-              <li>Equipo</li>
-              <li>FAQ</li>
+              <li><Link to="/about" onClick={handleLinkClick}>Nosotros</Link></li>
+              <li><Link to="/equipo" onClick={handleLinkClick}>Equipo</Link></li>
+              <li><Link to="/servicios" onClick={handleLinkClick}>Servicios</Link></li>
             </ul>
           </li>
 
@@ -67,20 +79,35 @@ const Header = () => {
             className={`has-dropdown ${openDropdown === 'food' ? 'active' : ''}`}
             onClick={() => toggleDropdown('food')}
           >
-            <Link to="/menu">Menú</Link>
+            <Link to="/menu" onClick={handleLinkClick}>Menú</Link>
             <ul className="dropdown">
-              <li>Desayunos</li>
-              <li>Almuerzos</li>
-              <li>Cenas</li>
+              <li><a href={getMenuLink('entradas')} onClick={handleLinkClick}>Entradas</a></li>
+              <li><a href={getMenuLink('platosprincipales')} onClick={handleLinkClick}>Platos Principales</a></li>
+              <li><a href={getMenuLink('postres')} onClick={handleLinkClick}>Postres</a></li>
+              <li><a href={getMenuLink('bebidas')} onClick={handleLinkClick}>Bebidas</a></li>
             </ul>
           </li>
 
-          <li>Ubicaciones</li>
-          <li><Link to="/contact">Contacto</Link></li>
+          <li><Link to="#" onClick={handleLinkClick}>Ubicaciones</Link></li>
+          <li><Link to="/contact" onClick={handleLinkClick}>Contacto</Link></li>
         </ul>
 
         <div className="nav-icons">
-          <FaSearch className="icon-search" />
+          {/* Icono de usuario */}
+          <div className="user-menu-container">
+            <FaUser
+              className="icon-user"
+              onClick={() => setUserMenuOpen(!userMenuOpen)}
+              style={{ cursor: 'pointer' }}
+            />
+            {userMenuOpen && (
+              <ul className="user-dropdown">
+                <li><Link to="/login" onClick={handleLinkClick}>Iniciar Sesión</Link></li>
+                <li><Link to="/register" onClick={handleLinkClick}>Registrarse</Link></li>
+              </ul>
+            )}
+          </div>
+
           <Link to="/cart" className="order-btn">Comprar Ahora →</Link>
           <button className="menu-toggle" onClick={() => setMobileOpen(!mobileOpen)}>
             {mobileOpen ? <FaTimes /> : <FaBars />}
