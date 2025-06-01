@@ -1,31 +1,19 @@
 // src/pages/TeamPage.js
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import '../styles/TeamPage.css';
 
-const teamMembers = [
-  {
-    name: 'Carlos Gómez',
-    role: 'Chef Ejecutivo',
-    image: 'https://i.imgur.com/3GvwNBf.jpg',
-    description: 'Experto en cocina internacional con más de 15 años de experiencia.'
-  },
-  {
-    name: 'Lucía Martínez',
-    role: 'Chef Pastelera',
-    image: 'https://i.imgur.com/9V5MshC.jpg',
-    description: 'Apasionada por los postres creativos y sabores únicos.'
-  },
-  {
-    name: 'Santiago Pérez',
-    role: 'Gerente General',
-    image: 'https://i.imgur.com/dM7Thhn.jpg',
-    description: 'Liderando al equipo hacia el éxito con visión y compromiso.'
-  }
-];
-
 const TeamPage = () => {
+  const [teamMembers, setTeamMembers] = useState([]);
+
+  useEffect(() => {
+    fetch('http://localhost:5000/api/equipo')
+      .then(res => res.json())
+      .then(data => setTeamMembers(data))
+      .catch(err => console.error('Error cargando el equipo:', err));
+  }, []);
+
   return (
     <>
       <Header />
