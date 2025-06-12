@@ -3,6 +3,8 @@ import './index.css'; // o './App.css' dependiendo del nombre que usas
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import PaginaPrincipal from './pages/PaginaPrincipal';
+import Login from './pages/Login';
+import Register from './pages/Register';
 import AboutPage from './pages/AboutPage';
 import MenuPage from './pages/MenuPage';
 import MenuDetail from './pages/MenuDetail';
@@ -20,6 +22,8 @@ function App() {
           <Route path="/" element={<FoodChainDashboard />} />
           <Route path="/p" element={<PaginaPrincipal />} />
           <Route path="/about" element={<AboutPage />} />
+          <Route path="/Login" element={<Login />} />
+          <Route path="/Register" element={<Register />} />
           <Route path="/menu" element={<MenuPage />} />
           <Route path="/menu/:id" element={<MenuDetail />} />
           <Route path="/cart" element={<CartPage />} />
