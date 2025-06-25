@@ -1,21 +1,18 @@
-// server.js
-require('dotenv').config();
 const express = require('express');
-const mongoose = require('mongoose');
 const cors = require('cors');
-const equipoRoutes = require('./routes/equipoRoutes');
-const connectDB = require('./config/db');
+const userRoutes = require('./routes/userRoutes');
 
 const app = express();
-const PORT = process.env.PORT || 5000;
 
+
+// Middlewares
 app.use(cors());
 app.use(express.json());
 
-connectDB();
+// Rutas
+app.use('/api/users', userRoutes); // Aquí conectas tu ruta
 
-app.use('/api', equipoRoutes);
-
-app.listen(PORT, () => {
-  console.log(`Servidor corriendo en http://localhost:${PORT}`);
+// Puerto
+app.listen(3006, () => {
+  console.log('Servidor corriendo en http://localhost:3006');
 });

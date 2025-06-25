@@ -7,6 +7,8 @@ import Login from './pages/Login';
 import Register from './pages/Register';
 import AboutPage from './pages/AboutPage';
 import MenuPage from './pages/MenuPage';
+import Restablecer from './pages/Restablecer';
+import Ubications from './components/Ubications';
 import MenuDetail from './pages/MenuDetail';
 import CartPage from './pages/CartPage'; 
 import { CartProvider } from './context/CartContext';
@@ -24,6 +26,8 @@ function App() {
           <Route path="/about" element={<AboutPage />} />
           <Route path="/Login" element={<Login />} />
           <Route path="/Register" element={<Register />} />
+          <Route path="/Restablecer" element={<Restablecer />} />
+          <Route path="/Ubications" element={<Ubications />} />
           <Route path="/menu" element={<MenuPage />} />
           <Route path="/menu/:id" element={<MenuDetail />} />
           <Route path="/cart" element={<CartPage />} />
