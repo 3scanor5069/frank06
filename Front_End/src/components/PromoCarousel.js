@@ -40,18 +40,39 @@ const PromoCarousel = () => {
     return () => clearInterval(interval);
   }, []);
 
+  const goToSlide = (index) => {
+    setCurrent(index);
+  };
+
   return (
-    <section className="promo-carousel">
-      {slides.map((slide, index) => (
-        <div
-          key={slide.id}
-          className={`slide ${index === current ? 'active' : ''}`}
-          style={{ backgroundImage: `url(${slide.image})` }}
+    <div className="carousel-container">
+      <div className="carousel-wrapper">
+        <div 
+          className="carousel-track"
+          style={{ transform: `translateX(-${current * 100}%)` }}
         >
-          <div className="slide-text">{slide.text}</div>
+          {slides.map((slide) => (
+            <div key={slide.id} className="carousel-slide">
+              <img src={slide.image} alt="Promoción" className="slide-image" />
+              <div className="slide-overlay">
+                <p className="slide-text">{slide.text}</p>
+              </div>
+            </div>
+          ))}
         </div>
-      ))}
-    </section>
+      </div>
+      
+      <div className="carousel-indicators">
+        {slides.map((_, index) => (
+          <button
+            key={index}
+            className={`indicator ${index === current ? 'active' : ''}`}
+            onClick={() => goToSlide(index)}
+            aria-label={`Ir a slide ${index + 1}`}
+          />
+        ))}
+      </div>
+    </div>
   );
 };
 
